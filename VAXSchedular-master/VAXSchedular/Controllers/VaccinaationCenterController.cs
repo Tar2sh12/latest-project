@@ -31,9 +31,8 @@ namespace VAXSchedular.Controllers
 		}
 
 
-		[Authorize(Roles = "Vaccination Center")]
+		[Authorize(Roles = "vaccination center")]
 		[HttpPut("ApproveReservationStatus")]
-
 		public async Task<ActionResult> ApproveVaccinationCenter()
 		{
 			var id = Int32.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
@@ -52,7 +51,7 @@ namespace VAXSchedular.Controllers
 		}
 
 		
-		[Authorize(Roles ="Vaccination Center")]
+		[Authorize(Roles ="vaccination center")]
 		[HttpGet("ViewPatientsAssociatedWithVaccine")]
 		public async Task<ActionResult<IEnumerable<PatientDto>>> GetPatientsWithItsVaccines()
 		{
@@ -85,7 +84,7 @@ namespace VAXSchedular.Controllers
 
 		}
 
-		[Authorize(Roles = "Vaccination Center")]
+		[Authorize(Roles = "vaccination center")]
 		[HttpPost("createCertificate")]
 		public async Task<ActionResult> CreateCertificate()
 		{

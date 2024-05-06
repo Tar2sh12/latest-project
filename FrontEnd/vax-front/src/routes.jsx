@@ -3,11 +3,7 @@ import { App } from "./components/App";
 import Home from "./pages/Home";
 import Login from "./pages/loginPage";
 import RegisterPage from './pages/registerPage';
-// import { ShowUser } from "./pages/admin/show-user/show-user";
-// import { UpdateUser } from "./pages/admin/update-user/update-user";
-// import { ProfessorHome } from "./pages/Professor/home/professor-home";
 import { AuthGuard } from "./guards/auth-guard";
-// import { Home } from "./pages/home/home";
 import Error from "./components/error";
 import Vaccine from "./pages/vaccine/vaccine.js";
 import VaccineCenter from "./pages/vaccineCenter/vaccineCenter";
@@ -18,6 +14,7 @@ import AddVaccine from "./pages/vaccine/addVaccine/addVaccine.js";
 import UpdateVaccine from "./pages/vaccine/updateVaccine/updateVaccine.js";
 import PatientHome from './pages/patientPages/patientHome/patientHome.js';
 import PatientReserve from './pages/patientPages/patientReserve/patientReserve.js'
+import VaccineCenterPage from "./pages/vaccineCenterPage/vaccineCenter.js";
 export const routes = createBrowserRouter([
   {
     path: "", //localhost:3000
@@ -97,6 +94,15 @@ export const routes = createBrowserRouter([
           {
             path:'/patientReserve',
             element: <PatientReserve/>
+          }
+        ]
+      },
+      {
+        element: <AuthGuard roles={["vaccination center"]} />,
+        children: [
+          {
+            path:'/vaccination-center-home',
+            element: <VaccineCenterPage/>
           }
         ]
       },

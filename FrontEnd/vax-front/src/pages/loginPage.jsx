@@ -42,8 +42,14 @@ const Login = () => {
               
             }).then((res) => {
               setAuthToken(res.data);
-              navigate("/admin-home");
-              console.log(getAuthToken());
+              if (res.data.role === "admin") {
+                navigate("/admin-home");
+              } else if (res.data.role === "patient") {
+                navigate("/patient-home");
+              }
+              else{
+                navigate("/vaccination-center-home");
+              }
             })
         } catch (error) {
 

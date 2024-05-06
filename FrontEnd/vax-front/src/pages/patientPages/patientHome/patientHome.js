@@ -56,7 +56,7 @@ const PatientHome = () => {
      );
    };
    
-   const error = () => {
+  const error = () => {
      return (
        <div className="container">
          <div className="row">
@@ -78,6 +78,7 @@ const [vaccine,setVaccine]=useState("");
   return (
     <>
     <PatientHeader/>
+    {users.err !== null && error()}
     <div>
     <h1 className="heading">Welcome {getAuthToken().user.role} {getAuthToken().user.unique_name}</h1>
   </div>{
@@ -111,6 +112,9 @@ function handleSubmit(e){
             }).then((res) => {
                 console.log("fol el fol");
             })
+            .catch((errors) => {
+              setUsers({ ...users, loading: false, err: [{ msg: `something went wrong` }] });
+            });
         } catch (error) {
 
           console.log('hello');

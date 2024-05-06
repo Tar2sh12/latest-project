@@ -70,12 +70,12 @@ const error = () => {
         <div className="row h-100 justify-content-center align-items-center">
           <div className="col-xl-12">
             <div className="card mb-4">
-              <div className="card-header">Vaccines</div>
+              <div className="card-header">Reservations</div>
               <div className="card-body" style={{ backgroundColor: "#F8F8F8" }}>
                 <div className="row align-items-center">
                   <div className="col-sm-6">
                     <h5 className="card-title">
-                    Vaccines List <span className="text-muted fw-normal ms-2">({users.result.length})</span>
+                    Reservations List <span className="text-muted fw-normal ms-2">({users.result.length})</span>
                     </h5>
                   </div>
                   <div className="col-sm-6">
@@ -93,6 +93,7 @@ const error = () => {
                             <th scope="col">vaccineName</th>
                             <th scope="col">vaccinationCenterName</th>
                             <th scope="col">reservationDate</th>
+                            <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -102,7 +103,7 @@ const error = () => {
                                 {/* <td>{user.name}</td> */}
                                 {/* <td>{user.description}</td> */}
                                 <td>
-                                  <span className="badge badge-soft-primary mb-0">{user.doseNumber}</span>
+                                  <span className="badge badge-soft-primary mb-0">{user.doseNumber+1}</span>
                                 </td>
                                 <td>
                                   <span className="badge badge-soft-primary mb-0">{user.vaccineName}</span>

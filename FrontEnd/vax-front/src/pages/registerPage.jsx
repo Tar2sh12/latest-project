@@ -6,24 +6,6 @@ import axios from 'axios';
 import myImage from '../assets/1000.jpg'
 const RegisterPage = () => {
 
-
-    // const [dropDown,setDrop]=useState([]);
-    // const getDropDown=()=>{
-    //     axios.get("http://localhost:5003/api/Account/register").then(res=>{
-    //       // console.log(res.data);
-    //       let x=res.data;
-
-       
-
-    //       setDrop(JSON.parse(JSON.stringify(x)));
-    //       // console.log(dropDown);
-    //     }).catch (error=>{
-    //         console.error('get request failed:', error);
-    //     })
-    
-    // }
-    
-
     const [formData, setFormData] = useState({
       name: '',
       email: '',
