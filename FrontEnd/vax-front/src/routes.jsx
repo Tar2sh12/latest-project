@@ -16,6 +16,8 @@ import AddVaccineCenter from './pages/vaccineCenter/addVaccineCenter/addVaccineC
 import UpdateVaccineCenter from "./pages/vaccineCenter/updateVaccineCenter/updateVaccineCenter.js";
 import AddVaccine from "./pages/vaccine/addVaccine/addVaccine.js";
 import UpdateVaccine from "./pages/vaccine/updateVaccine/updateVaccine.js";
+import PatientHome from './pages/patientPages/patientHome/patientHome.js';
+import PatientReserve from './pages/patientPages/patientReserve/patientReserve.js'
 export const routes = createBrowserRouter([
   {
     path: "", //localhost:3000
@@ -85,7 +87,19 @@ export const routes = createBrowserRouter([
           }
         ],
       },
-
+      {
+        element: <AuthGuard roles={["patient"]} />,
+        children: [
+          {
+            path:'/patient-home',
+            element: <PatientHome/>
+          },
+          {
+            path:'/patientReserve',
+            element: <PatientReserve/>
+          }
+        ]
+      },
 
 
     //   {

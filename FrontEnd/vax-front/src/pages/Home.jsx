@@ -21,11 +21,6 @@ return (
             <section className="wrapper">
       <div className="container-fostrap">
         <div>
-          {/* <img
-            src="https://4.bp.blogspot.com/-7OHSFmygfYQ/VtLSb1xe8kI/AAAAAAAABjI/FxaRp5xW2JQ/s320/logo.png"
-            className="fostrap-logo"
-            alt="Logo"
-          /> */}
           <h1 className="heading">Welcome {getAuthToken().user.role} {getAuthToken().user.unique_name}</h1>
         </div>
         <div className="content">
