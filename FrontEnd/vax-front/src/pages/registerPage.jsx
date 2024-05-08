@@ -4,8 +4,11 @@ import Header from '../components/Header';
 import {jwtDecode} from "jwt-decode";
 import axios from 'axios';
 import myImage from '../assets/1000.jpg'
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const RegisterPage = () => {
-
+  const navigate =useNavigate();
+    const [err,setError]=useState(null);
     const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -53,11 +56,6 @@ const RegisterPage = () => {
   
     const handleSubmit = (e) => {
       e.preventDefault();
-
-
-
-      // try {
-        
       console.log(typeof (Number(formData.userRoleId)));
       console.log(formData);
         axios.post("http://localhost:5003/api/Account/register", {
@@ -67,24 +65,31 @@ const RegisterPage = () => {
             address: formData.address,
             phoneNumber: formData.phoneNumber,
             userRoleId: Number(formData.userRoleId)
-        }).then().catch ((error)=>{
-          console.log('hi');
-                  console.error('post request failed:', error);
-        })
-          
-    // } catch (error) {
-
-    //   console.log('hello');
-    //   console.error('POST request failed:', error);
-    // }
+        }).then().catch((errors) => {
+          setError([{ msg: `email or pass are already used` }]);
+        });
       console.log(formData);
       console.log(Number(formData.userRoleId));
-      // console.log(formData);
     };
-
+    const error = () => {
+      return (
+        <div className="container">
+          <div className="row">
+            {err.map((err, index) => {
+              return (
+                <div key={index} className="col-sm-12 alert alert-danger" role="alert">
+                  {err.msg}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    };
   return (
     <div>
-    <Header/>
+    {/* <Header/> */}
+    {err !== null && error()}
 
     <section className="p-3 p-md-4 p-xl-5">
       <div className="container">
@@ -163,49 +168,26 @@ const RegisterPage = () => {
                     </div>
                   </div>
                 </form>
+                <div className="row">
+                  <div className="col-12">
+                    <p className="mt-3 text-secondary text-center">
+                      Do you have an account?
+                      <Link onClick={()=>{navigate("/login")}}><a
+                        href="#!"
+                        className="link-primary text-decoration-none"
+                        style={{ color: '#a2daf5 !important' }}
+                      >
+                        Sign in
+                      </a></Link>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-      {/* <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required />
-        </div>
-        <div>
-          <label htmlFor="address">Address:</label>
-          <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required />
-        </div>
-        <div>
-          <label htmlFor="phoneNumber">Phone Number:</label>
-          <input type="tel" id="phoneNumber" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required />
-        </div>
-        <div>
-
-          <select value={selectedOption} onChange={handleDropdownChange}>
-          
-            <option value={1}>admin</option>
-            <option value={7}>patient</option>
-            <option value={8}>vaccination center</option>
-       
-          </select>
-        </div>
-        <button type="submit">Register</button>
-      </form> */}
-
-    {/* <Footer/> */}
- 
     </div>
   )
 }

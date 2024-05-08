@@ -2,11 +2,19 @@ import React from 'react'
 import './patientHeader.css'
 import { Link } from "react-router-dom";
 import { getAuthToken, removeAuthToken } from "../services/auth";
+import { useNavigate } from 'react-router-dom';
+import './header.css'
 const PatientHeader = () => {
+    const navigate=useNavigate();
     function checkTokens(){
-
+        navigate("/login");
         removeAuthToken();
-    
+    }
+    function homePage(){
+        navigate("/patient-home");
+    }
+    function reservePage(){
+        navigate("/patientReserve");
     }
   return (
     <div>
@@ -19,12 +27,19 @@ const PatientHeader = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                <a className="nav-link" href="#"><Link  to="/patient-home" >Home</Link> <span className="sr-only">(current)</span></a>
+                <a onClick={homePage} className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item active">
-                <a className="nav-link" href="#"><Link  to="/patientReserve" >Reservations</Link> <span className="sr-only">(current)</span></a>
+                <a className="nav-link" onClick={reservePage} href="#">Reservations <span className="sr-only">(current)</span></a>
                 </li>
-                <li className="nav-item"><Link className="nav-link btn btn-outline-light rounded-pill" to="/login" onClick={checkTokens}><a className="nav-link btn btn-outline-light rounded-pill" href="#" style={{ backgroundColor: 'white', color: '#a2daf5' }}>Log in</a></Link></li> 
+                <li>
+                    <button className="but" onClick={checkTokens}>
+                        Sign up
+                        <div class="arrow-wrapper">
+                        <div class="arrow"></div>
+                        </div>
+                    </button>
+                </li> 
             </ul>
             </div>
         </div>

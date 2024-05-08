@@ -6,7 +6,7 @@ import React,{useRef,useEffect,createContext,useState} from "react";
 import axios from 'axios';
 import {  getAuthToken, setAuthToken } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
-
+import Header from "../../components/Header";
 
 const Vaccine = () => {
 
@@ -67,6 +67,7 @@ const error = () => {
 
 return (
   <>
+  <Header/>
     {users.err !== null && error()}
     {users.loading === true ? (
       loadingSpinner()
@@ -174,9 +175,7 @@ return (
         </div>
       </div>
     )}
-    <button className="btn bsb-btn-xl btn-primary"  onClick={()=>{
-        navigate('/admin-home')
-      }}>back</button>
+
   </>
 );
 }
